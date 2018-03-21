@@ -37,8 +37,7 @@ alpha = 0.05
 power.tfisher(alpha, 100, 0.05, 0.25, eps = 0.1, mu = 1.2)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }
 \seealso{
 \code{\link{stat.tfisher}} for the definition of the statistic.

@@ -4,7 +4,7 @@
 \alias{q.tfisher}
 \title{Quantile of thresholding Fisher's p-value combination statistic under the null hypothesis.}
 \usage{
-q.tfisher(p, n, tau1, tau2)
+q.tfisher(p, n, tau1, tau2, M = NULL)
 }
 \arguments{
 \item{p}{-  a scalar left probability that defines the quantile.}
@@ -14,6 +14,8 @@ q.tfisher(p, n, tau1, tau2)
 \item{tau1}{- truncation parameter. 0 < tau1 <= 1.}
 
 \item{tau2}{- normalization parameter. tau2 >= tau1.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence.}
 }
 \value{
 Quantile of thresholding Fisher's p-value combination statistic.
@@ -23,11 +25,13 @@ Quantile of thresholding Fisher's p-value combination statistic under the null h
 }
 \examples{
 ## The 0.05 critical value of TFisher statistic when n = 10:
-q.tfisher(p=.95, n=10, tau1 = 0.05, tau2 = 0.25)
+q.tfisher(p=.95, n=20, tau1=0.05, tau2=0.25)
+## when corrrelated
+M = matrix(0.3,20,20) + diag(1-0.3,20)
+q.tfisher(p=.95, n=20, tau1=0.05, tau2=0.25, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }
 \seealso{
 \code{\link{stat.tfisher}} for the definition of the statistic.

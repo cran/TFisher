@@ -4,7 +4,7 @@
 \alias{q.tpm}
 \title{Quantile of truncated product method statistic under the null hypothesis.}
 \usage{
-q.tpm(p, n, tau1)
+q.tpm(p, n, tau1, M = NULL)
 }
 \arguments{
 \item{p}{-  a scalar left probability that defines the quantile.}
@@ -12,6 +12,8 @@ q.tpm(p, n, tau1)
 \item{n}{- dimension parameter, i.e. the number of input p-values.}
 
 \item{tau1}{- truncation parameter. 0 < tau1 <= 1.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence.}
 }
 \value{
 Quantile of truncated product method statistic.
@@ -21,11 +23,12 @@ Quantile of truncated product method statistic under the null hypothesis.
 }
 \examples{
 ## The 0.05 critical value of TPM statistic when n = 10:
-q.tpm(p=.95, n=10, tau1 = 0.05)
+q.tpm(p=.95, n=20, tau1 = 0.05)
+M = matrix(0.3,20,20) + diag(1-0.3,20)
+q.tpm(p=.95, n=20, tau1 = 0.05, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 
 2. Zaykin, D.V., Zhivotovsky, L. A., Westfall, P.H. and Weir, B.S. (2002), Truncated product method for combining P-values. Genet. Epidemiol., 22: 170–185. doi:10.1002/gepi.0042
 }

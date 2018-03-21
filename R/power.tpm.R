@@ -11,8 +11,7 @@
 #' \eqn{F_0} is the standard normal CDF and \eqn{F = F_1} is the CDF of normal distribution with \eqn{\mu} defined by mu and \eqn{\sigma = 1}.
 #'
 #' @seealso \code{\link{stat.soft}} for the definition of the statistic.
-#' @references 1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-#' Tests for Signal Detection", submitted.
+#' @references 1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 #' @examples
 #' alpha = 0.05
 #' #If the alternative hypothesis Gaussian mixture with eps = 0.1 and mu = 1.2:#

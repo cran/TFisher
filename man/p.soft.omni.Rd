@@ -4,7 +4,7 @@
 \alias{p.soft.omni}
 \title{CDF of omnibus soft-thresholding Fisher's p-value combination statistic under the null hypothesis.}
 \usage{
-p.soft.omni(q, n, TAU1)
+p.soft.omni(q, n, TAU1, M = NULL)
 }
 \arguments{
 \item{q}{- quantile, could be a vector.}
@@ -12,6 +12,8 @@ p.soft.omni(q, n, TAU1)
 \item{n}{- dimension parameter, i.e. the number of p-values to be combined.}
 
 \item{TAU1}{- a vector of truncation parameters (=normalization parameters). Must be in non-descending order.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence.}
 }
 \value{
 The left-tail probability of the null distribution of omnibus soft-thresholding Fisher's p-value combination statistic.
@@ -23,11 +25,11 @@ CDF of omnibus soft-thresholding Fisher's p-value combination statistic under th
 q = 0.01
 n = 20
 TAU1 = c(0.01, 0.05, 0.5, 1)
-p.soft.omni(q=q, n=n, TAU1=TAU1)
+M = matrix(0.3,20,20) + diag(1-0.3,20)
+p.soft.omni(q=q, n=n, TAU1=TAU1, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }
 \seealso{
 \code{\link{stat.soft.omni}} for the definition of the statistic.

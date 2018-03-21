@@ -26,6 +26,5 @@ pval <- runif(100)
 stat.soft(p=pval, tau1=0.05)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }

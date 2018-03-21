@@ -4,7 +4,7 @@
 \alias{p.tpm}
 \title{CDF of truncated product method statistic under the null hypothesis.}
 \usage{
-p.tpm(q, n, tau1)
+p.tpm(q, n, tau1, M = NULL)
 }
 \arguments{
 \item{q}{- quantile, could be a vector.}
@@ -12,6 +12,8 @@ p.tpm(q, n, tau1)
 \item{n}{- dimension parameter, i.e. the number of p-values to be combined.}
 
 \item{tau1}{- truncation parameter. 0 < tau1 <= 1.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence.}
 }
 \value{
 The left-tail probability of the null distribution of truncated product method statistic at the given quantile.
@@ -23,10 +25,11 @@ CDF of truncated product method statistic under the null hypothesis.
 pval <- runif(100)
 tpmstat <- stat.tpm(p=pval, tau1=0.05)
 p.tpm(q=tpmstat, n=100, tau1=0.05)
+M = matrix(0.3,100,100) + diag(1-0.3,100)
+p.tpm(q=tpmstat, n=100, tau1=0.05, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 
 2. Zaykin, D.V., Zhivotovsky, L. A., Westfall, P.H. and Weir, B.S. (2002), Truncated product method for combining P-values. Genet. Epidemiol., 22: 170–185. doi:10.1002/gepi.0042
 }

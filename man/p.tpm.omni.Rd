@@ -4,7 +4,7 @@
 \alias{p.tpm.omni}
 \title{CDF of omnibus truncated product method statistic under the null hypothesis.}
 \usage{
-p.tpm.omni(q, n, TAU1)
+p.tpm.omni(q, n, TAU1, M = NULL)
 }
 \arguments{
 \item{q}{- quantile, could be a vector.}
@@ -12,6 +12,8 @@ p.tpm.omni(q, n, TAU1)
 \item{n}{- dimension parameter, i.e. the number of p-values to be combined.}
 
 \item{TAU1}{- a vector of truncation parameters. Must be in non-descending order.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence}
 }
 \value{
 The left-tail probability of the null distribution of omnibus truncated product method statistic.
@@ -23,11 +25,11 @@ CDF of omnibus truncated product method statistic under the null hypothesis.
 q = 0.05
 n = 20
 TAU1 = c(0.01, 0.05, 0.5, 1)
-p.tpm.omni(q=q, n=n, TAU1=TAU1)
+M = matrix(0.3,20,20) + diag(1-0.3,20)
+p.tpm.omni(q=q, n=n, TAU1=TAU1, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }
 \seealso{
 \code{\link{stat.tpm.omni}} for the definition of the statistic.

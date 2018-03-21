@@ -2,25 +2,37 @@
 % Please edit documentation in R/stat.tfisher.omni.R
 \name{stat.tfisher.omni}
 \alias{stat.tfisher.omni}
-\title{Construct omnibus thresholding Fisher's p-value combination statistic.}
+\title{Construct omnibus thresholding Fisher's (TFisher) p-value combination statistic.}
 \usage{
-stat.tfisher.omni(p, TAU1, TAU2)
+stat.tfisher.omni(p, TAU1, TAU2, M = NULL, MU = NULL, SIGMA2 = NULL,
+  P0 = NULL)
 }
 \arguments{
-\item{p}{- input p-values.}
+\item{p}{- input p-values from potentially correlated input sstatistics.}
 
 \item{TAU1}{- a vector of truncation parameters. Must be in non-descending order.}
 
 \item{TAU2}{- a vector of normalization parameters. Must be in non-descending order.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence}
+
+\item{MU}{- a vector of means of TFisher statistics. Default = NULL.}
+
+\item{SIGMA2}{- a vector of variances of TFisher statistics. Default = NULL.}
+
+\item{P0}{- a vector of point masses of TFisher statistics. Default = NULL.}
 }
 \value{
-Omnibus thresholding Fisher's p-value combination statistic.
+omni - omnibus TFisher statistic.
+
+pval - p-values of each TFisher tests.
 }
 \description{
-Construct omnibus thresholding Fisher's p-value combination statistic.
+Construct omnibus thresholding Fisher's (TFisher) p-value combination statistic.
 }
 \details{
-Let \eqn{p_{i}}, \eqn{i = 1,...,n} be a sequence of p-values, the thresholding statistics
+Let \eqn{x_{i}}, \eqn{i = 1,...,n} be a sequence of individual statistics with
+correlation matrix M, \eqn{p_{i}} be the corresponding two-sided p-values, then the TFisher statistics
 \deqn{TFisher_j = \sum_{i=1}^n -2\log(p_i/\tau_{2j})I(p_i\leq\tau_{1j})}, \eqn{j = 1,...,d}.
 The omnibus test statistic is the minimum p-value of these thresholding tests,
 \deqn{W_o = min_j G_j(Soft_j)}, where \eqn{G_j} is the survival function of \eqn{Soft_j}.
@@ -30,8 +42,9 @@ pval = runif(20)
 TAU1 = c(0.01, 0.05, 0.5, 1)
 TAU2 = c(0.1, 0.2, 0.5, 1)
 stat.tfisher.omni(p=pval, TAU1=TAU1, TAU2=TAU2)
+M = matrix(0.3,20,20) + diag(1-0.3,20)
+stat.tfisher.omni(p=pval, TAU1=TAU1, TAU2=TAU2, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }

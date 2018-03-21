@@ -4,7 +4,8 @@
 \alias{p.tfisher}
 \title{CDF of thresholding Fisher's p-value combination statistic under the null hypothesis.}
 \usage{
-p.tfisher(q, n, tau1, tau2)
+p.tfisher(q, n, tau1, tau2, M = NULL, mu = NULL, sigma2 = NULL,
+  p0 = NULL)
 }
 \arguments{
 \item{q}{- quantile, could be a vector.}
@@ -14,6 +15,14 @@ p.tfisher(q, n, tau1, tau2)
 \item{tau1}{- truncation parameter. 0 < tau1 <= 1.}
 
 \item{tau2}{- normalization parameter. tau2 >= tau1.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence.}
+
+\item{mu}{- the mean of TFisher statistics. Default = NULL.}
+
+\item{sigma2}{- the variance of TFisher statistics. Default = NULL.}
+
+\item{p0}{- the point masse of TFisher statistics. Default = NULL.}
 }
 \value{
 The left-tail probability of the null distribution of thresholding Fisher's p-value combination statistic at the given quantile.
@@ -22,13 +31,14 @@ The left-tail probability of the null distribution of thresholding Fisher's p-va
 CDF of thresholding Fisher's p-value combination statistic under the null hypothesis.
 }
 \examples{
-pval <- runif(100)
-tfstat <- stat.tfisher(p=pval, tau1=0.75, tau2=0.25)
-p.tfisher(q=tfstat, n=100, tau1=0.75, tau2=0.25)
+pval <- runif(20)
+tfstat <- stat.tfisher(p=pval, tau1=0.25, tau2=0.75)
+p.tfisher(q=tfstat, n=20, tau1=0.25, tau2=0.75)
+M = matrix(0.3,20,20) + diag(1-0.3,20)
+p.tfisher(q=tfstat, n=20, tau1=0.25, tau2=0.75, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }
 \seealso{
 \code{\link{stat.tfisher}} for the definition of the statistic.

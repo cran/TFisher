@@ -4,7 +4,7 @@
 \alias{p.soft}
 \title{CDF of soft-thresholding Fisher's p-value combination statistic under the null hypothesis.}
 \usage{
-p.soft(q, n, tau1)
+p.soft(q, n, tau1, M = NULL)
 }
 \arguments{
 \item{q}{- quantile, could be a vector.}
@@ -12,6 +12,8 @@ p.soft(q, n, tau1)
 \item{n}{- dimension parameter, i.e. the number of p-values to be combined.}
 
 \item{tau1}{- truncation parameter=normalization parameter. tau1 > 0.}
+
+\item{M}{- correlation matrix of the input statistics. Default = NULL assumes independence.}
 }
 \value{
 The left-tail probability of the null distribution of soft-thresholding Fisher's p-value combination statistic at the given quantile.
@@ -23,10 +25,11 @@ CDF of soft-thresholding Fisher's p-value combination statistic under the null h
 pval <- runif(100)
 softstat <- stat.soft(p=pval, tau1=0.05)
 p.soft(q=softstat, n=100, tau1=0.05)
+M = matrix(0.3,100,100) + diag(1-0.3,100)
+p.soft(q=softstat, n=100, tau1=0.05, M=M)
 }
 \references{
-1. Hong Zhang and Zheyang Wu. "Optimal Thresholding of Fisher's P-value Combination
-Tests for Signal Detection", submitted.
+1. Hong Zhang and Zheyang Wu. "TFisher Tests: Optimal and Adaptive Thresholding for Combining p-Values", submitted.
 }
 \seealso{
 \code{\link{stat.soft}} for the definition of the statistic.
